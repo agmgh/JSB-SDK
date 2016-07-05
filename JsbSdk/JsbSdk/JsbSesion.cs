@@ -54,7 +54,7 @@ namespace JsbSdk
 
         private string GetAuthorizationHeader(string method, string uri, string timestamp, string requestId)
         {
-            //Build a string containing essential information used to identify a request. It will not be sent to the server but instead, used to generate a digest. The generated digest will be encrypted and sent to the server.
+            //Build a string containing essential information used to identify a request. It will not be sent to the server but instead, used to generate a digest. The generated digest will be keyed-hashed and sent to the server.
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(method.ToUpper());
             stringBuilder.Append("\r\n");
@@ -76,10 +76,10 @@ namespace JsbSdk
             var Sha1DigestOfStringToSign = new byte[sha1Algorism.GetDigestSize()];
             sha1Algorism.DoFinal(Sha1DigestOfStringToSign, 0);
             var Sha1DigestHexStringOfStringToSign = BitConverter.ToString(Sha1DigestOfStringToSign).Replace("-", "").ToLower();
-            //Generate an encrption key from JSB's secret key and request id. The encrption key is the result of HMac SHA-256 algorism where request id is the string to encrpt and secret key is the encryption key.
-            var encryptionKey = ComputeHMacSHA256(requestId, Encoding.UTF8.GetBytes("JSB4" + this.secretKey));
-            //Using the generated encryption key above to encrpt the Digest of stringToSign. This will be used the signature in the authorization header.
-            var signature = ComputeHMacSHA256(Sha1DigestHexStringOfStringToSign, encryptionKey);
+            //Generate a hash key from JSB's secret key and request id. The hash key is the result of HMac SHA-256 algorism where request id is the string to hash and secret key is the hash key.
+            var hashKey = ComputeHMacSHA256(requestId, Encoding.UTF8.GetBytes("JSB4" + this.secretKey));
+            //Using the generated hash key above to keyed-hash Sha1DigestHexStringOfStringToSign. This will be used the signature in the authorization header.
+            var signature = ComputeHMacSHA256(Sha1DigestHexStringOfStringToSign, hashKey);
             var signatureHex = BitConverter.ToString(signature).Replace("-", "").ToLower();
 
             //Build the authorization header string.
