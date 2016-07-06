@@ -114,7 +114,7 @@ namespace JsbSdk
 
             //Build the authorization header string.
             stringBuilder = new StringBuilder();
-            stringBuilder.Append("Credential=" + "1234567");
+            stringBuilder.Append("Credential=" + this.accessKey);
             stringBuilder.Append(",SignedHeaders=x-jsb-sdk-req-timestamp;x-jsb-sdk-req-uuid,Signature=");
             stringBuilder.Append(signatureHex);
             return stringBuilder.ToString();
