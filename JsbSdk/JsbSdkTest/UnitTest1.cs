@@ -11,7 +11,7 @@ namespace JsbSdkTest
         public void Test()
         {
             var jsbWeb = new JsbWeb("asdoooooooooooooooooooooooooohfiohdoassssssssssswwwwwwwwwwwwwwwwww", "1234567");
-            var result = jsbWeb.FetchAsync(jsbWeb.SignTestUri).Result;
+            var result = jsbWeb.FetchAsync(jsbWeb.SignTestUri, "PUT").Result;
             Assert.AreEqual(result, "{\"error_response\":{\"code\":\"success\",\"msg\":\"success\",\"sub_code\":\"\",\"sub_msg\":\"signature match\",\"request_id\":\"\"}}");
         }
     }
