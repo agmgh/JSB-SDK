@@ -28,7 +28,7 @@ namespace JsbSdk
             this.secretKey = secretKey;
         }
 
-        public async Task<string> FetchAsync(Uri uri, string verb, Dictionary<string, string> parameters = null)
+        public async Task<string> FetchAsync(Uri uri, string verb, IEnumerable<KeyValuePair<string, string>> parameters = null)
         {
             if (uri == null)
                 throw new ArgumentNullException("uri");
@@ -41,22 +41,22 @@ namespace JsbSdk
             }
         }
 
-        public Task<string> FetchAsync(Uri uri, Dictionary<string, string> parameters = null)
+        public Task<string> FetchAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters = null)
         {
             return FetchAsync(uri, "GET", parameters);
         }
 
-        public string Fetch(Uri uri, string verb, Dictionary<string, string> parameters = null)
+        public string Fetch(Uri uri, string verb, IEnumerable<KeyValuePair<string, string>> parameters = null)
         {
             return FetchAsync(uri, verb, parameters).Result;
         }
 
-        public string Fetch(Uri uri, Dictionary<string, string> parameters = null)
+        public string Fetch(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters = null)
         {
             return FetchAsync(uri, "GET", parameters).Result;
         }
 
-        public async Task<HttpWebResponse> Request(Uri uri, string verb, Dictionary<string, string> paramters = null)
+        public async Task<HttpWebResponse> Request(Uri uri, string verb, IEnumerable<KeyValuePair<string, string>> paramters = null)
         {
             if (!uri.IsAbsoluteUri)
                 uri = new Uri(JsbRestBaseUri, uri);
