@@ -75,7 +75,7 @@ namespace JsbSdk
             request.Method = verb;
             request.Headers["x-jsb-sdk-req-timestamp"] = timeStamp;
             request.Headers["x-jsb-sdk-req-uuid"] = requestId;
-            request.Headers[HttpRequestHeader.Authorization] = GetAuthorizationHeader("PUT", uri.ToString(), timeStamp, requestId);
+            request.Headers[HttpRequestHeader.Authorization] = GetAuthorizationHeader("GET", uri.ToString(), timeStamp, requestId);
 
             var response = await request.GetResponseAsync() as HttpWebResponse;
             return response;
