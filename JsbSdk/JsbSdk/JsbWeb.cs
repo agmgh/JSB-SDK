@@ -108,7 +108,7 @@ namespace JsbSdk
             var Sha1DigestHexStringOfStringToSign = BitConverter.ToString(Sha1DigestOfStringToSign).Replace("-", "").ToLower();
             //Generate a hash key from JSB's secret key and request id. The hash key is the result of HMac SHA-256 algorism where request id is the string to hash and secret key is the hash key.
             var hashKey = ComputeHMacSHA256(requestId, Encoding.UTF8.GetBytes("JSB4" + this.secretKey));
-            //Using the generated hash key above to keyed-hash Sha1DigestHexStringOfStringToSign. This will be used the signature in the authorization header.
+            //Using the generated hash key above to keyed-hash Sha1DigestHexStringOfStringToSign. This will be used as the signature in the authorization header.
             var signature = ComputeHMacSHA256(Sha1DigestHexStringOfStringToSign, hashKey);
             var signatureHex = BitConverter.ToString(signature).Replace("-", "").ToLower();
 
