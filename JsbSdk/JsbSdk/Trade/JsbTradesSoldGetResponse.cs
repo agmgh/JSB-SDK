@@ -108,7 +108,7 @@ namespace JsbSdk.Trade
         public string ReceiverPhone { get; set; }
 
         [JsonProperty("consign_time")]
-        public string ConsignTime { get; set; }
+        public DateTime? ConsignTime { get; set; }
 
         [JsonProperty("received_payment")]
         public string ReceivedPayment { get; set; }
@@ -156,16 +156,16 @@ namespace JsbSdk.Trade
         public string TotalFee { get; set; }
 
         [JsonProperty("created")]
-        public string Created { get; set; }
+        public DateTime? Created { get; set; }
 
         [JsonProperty("pay_time")]
-        public string PayTime { get; set; }
+        public DateTime? PayTime { get; set; }
 
         [JsonProperty("modified")]
-        public string Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         [JsonProperty("end_time")]
-        public string EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
 
         [JsonProperty("seller_flag")]
         public int SellerFlag { get; set; }
