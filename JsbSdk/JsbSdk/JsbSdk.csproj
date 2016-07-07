@@ -36,7 +36,12 @@
   <ItemGroup>
     <Compile Include="JsbResponse.cs" />
     <Compile Include="JsbWeb.cs" />
+    <Compile Include="Logistics\JsbLogisticsDummySendResponse.cs" />
+    <Compile Include="Logistics\LogisticsApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trade\JsbTradeCloseResponse.cs" />
+    <Compile Include="Trade\TradeApi.cs" />
+    <Compile Include="Trade\JsbTradesSoldGetResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">

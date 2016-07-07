@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace JsbSdk
 {
+    /// <summary>
+    /// Base class for all JSB responses
+    /// </summary>
     public class JsbResponse
     {
+        /// <summary>
+        /// When the reqeust is successful, this value will be null.
+        /// </summary>
         [JsonProperty("error_response")]
         public ErrorResponse ErrorResponse { get; set; }
     }
@@ -16,7 +22,7 @@ namespace JsbSdk
     public class ErrorResponse
     {
         [JsonProperty("code")]
-        public JsbErrorCodes Code { get; set; }
+        public string Code { get; set; }
         [JsonProperty("msg")]
         public string Message { get; set; }
         [JsonProperty("sub_code")]
@@ -25,10 +31,5 @@ namespace JsbSdk
         public string SubMessage { get; set; }
         [JsonProperty("request_id")]
         public string RequestId { get; set; }
-    }
-
-    public enum JsbErrorCodes
-    {
-        SignatureDoesNotMatch
     }
 }

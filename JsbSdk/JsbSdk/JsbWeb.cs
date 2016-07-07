@@ -28,6 +28,16 @@ namespace JsbSdk
             this.secretKey = secretKey;
         }
 
+        /// <summary>
+        /// Get a new instance of <see cref="Trade.TradeApi"/>. This is equivalent to constructing a new <see cref="Trade.TradeApi"/>.
+        /// </summary>
+        public Trade.TradeApi Trades => new Trade.TradeApi(this.accessKey, this.secretKey);
+
+        /// <summary>
+        /// Get a new instance of <see cref="Logistics.LogisticsApi"/>. This is equivalent to constructing a new <see cref="Logistics.LogisticsApi"/>.
+        /// </summary>
+        public Logistics.LogisticsApi Logistics => new JsbSdk.Logistics.LogisticsApi(this.accessKey, this.secretKey);
+
         public async Task<string> FetchAsync(Uri uri, string verb, IEnumerable<KeyValuePair<string, string>> parameters = null)
         {
             if (uri == null)
@@ -68,7 +78,7 @@ namespace JsbSdk
             {
                 if (!string.IsNullOrEmpty(uri.Query))
                     throw new InvalidOperationException("Uri cannnot contain a query when no parameters are specified.");
-                uri = new Uri(uri.ToString() + "?" + string.Join("&", paramters.Select(p => WebUtility.UrlEncode(p.Key) + "=" + WebUtility.UrlEncode(p.Value))));
+                uri = new Uri(uri.ToString() + "?" + string.Join("&", paramters.Select(p => p.Key + "=" + p.Value)));
             }
 
             var request = WebRequest.CreateHttp(uri);
