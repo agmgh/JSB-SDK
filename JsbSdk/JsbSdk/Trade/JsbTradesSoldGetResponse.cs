@@ -34,6 +34,9 @@ namespace JsbSdk.Trade
         [JsonProperty("oid")]
         public object Oid { get; set; }
 
+        /// <summary>
+        /// 商家外部编码（又称商家编码）。外部商家自己定义的商品Item的id，可以通过taobao.items.custom.get获取商品的Item的信息。
+        /// </summary>
         [JsonProperty("outer_iid")]
         public string OuterIid { get; set; }
 
