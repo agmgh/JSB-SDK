@@ -17,6 +17,10 @@ namespace JsbSdk
         /// </summary>
         [JsonProperty("error_response")]
         public ErrorResponse ErrorResponse { get; set; }
+        /// <summary>
+        /// Whether the request was successful. If not, see <see cref="ErrorResponse"/> for details.
+        /// </summary>
+        public bool Success => ErrorResponse == null;
     }
 
     public class ErrorResponse
