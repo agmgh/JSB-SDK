@@ -59,18 +59,9 @@ namespace JsbSdk.Logistics
         /// 参数格式：identCode=TIDA:12345,67890。TIDA对应了A宝贝，冒号后用逗号分隔的"12345","67890".说明本订单A宝贝的数量为2，值分别为"12345","67890"。
         /// 当存在"|"时，就说明订单中存在多个商品，商品间用"|"分隔了开来。|"之后的内容含义同上。</param>
         /// <returns></returns>
-        public async Task<JsbLogisticsDummySendResponse> LogisticsDummySendAsync(Trade.Trade trade, string feature = null, string seller_ip = null)
+        public Task<JsbLogisticsDummySendResponse> LogisticsDummySendAsync(Trade.Trade trade, string feature = null, string seller_ip = null)
         {
-            if (trade.Tid == default(long))
-                throw new ArgumentException(nameof(trade) + ".Tid cannot be 0.");
-            var data = new Dictionary<string, string>();
-            data["tid"] = trade.Tid.ToString();
-            if (feature != null)
-                data["feature"] = feature;
-            if (seller_ip != null)
-                data["seller_ip"] = seller_ip;
-
-            return await Task.Run(async () => JsonConvert.DeserializeObject<JsbLogisticsDummySendResponse>(await base.FetchAsync(new Uri("trade/LogisticsDummySendRequest", UriKind.Relative), "PUT", data)));
+            return LogisticsDummySendAsync(trade.Tid, feature, seller_ip);
         }
     }
 }
