@@ -39,7 +39,7 @@ namespace JsbSdk.Logistics
             if (seller_ip != null)
                 data["seller_ip"] = seller_ip;
 
-            return await Task.Run(async () => JsonConvert.DeserializeObject<JsbLogisticsDummySendResponse>(await base.FetchAsync(new Uri("trade/LogisticsDummySendRequest", UriKind.Relative), "PUT", data)));
+            return await Task.Run(async () => JsonConvert.DeserializeObject<JsbLogisticsDummySendResponse>(await base.FetchAsync(new Uri("logistics/LogisticsDummySendRequest", UriKind.Relative), "PUT", data)));
         }
 
         /// <summary>
