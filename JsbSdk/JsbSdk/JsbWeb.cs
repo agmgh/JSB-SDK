@@ -31,12 +31,12 @@ namespace JsbSdk
         /// <summary>
         /// Get a new instance of <see cref="Trade.TradeApi"/>. This is equivalent to constructing a new <see cref="Trade.TradeApi"/>.
         /// </summary>
-        public Trade.TradeApi Trades => new Trade.TradeApi(this.accessKey, this.secretKey);
+        public Trade.TradeApi Trades => new Trade.TradeApi(this.accessKey, this.secretKey) { JsbRestBaseUri = this.JsbRestBaseUri };
 
         /// <summary>
         /// Get a new instance of <see cref="Logistics.LogisticsApi"/>. This is equivalent to constructing a new <see cref="Logistics.LogisticsApi"/>.
         /// </summary>
-        public Logistics.LogisticsApi Logistics => new JsbSdk.Logistics.LogisticsApi(this.accessKey, this.secretKey);
+        public Logistics.LogisticsApi Logistics => new JsbSdk.Logistics.LogisticsApi(this.accessKey, this.secretKey) { JsbRestBaseUri = this.JsbRestBaseUri };
 
         public async Task<string> FetchAsync(Uri uri, string verb, IEnumerable<KeyValuePair<string, string>> parameters = null)
         {
